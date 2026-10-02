@@ -10,17 +10,35 @@ A wedding invitation site with:
 
 ```
 wedding-invitation/
-├── server.js            ← the server + database code
-├── package.json         ← list of dependencies
-├── .env                 ← YOUR settings (you create it, see step 3)
-├── .env.example         ← template for .env
-├── public/              ← what guests see
+├── src/                     ← modular clean architecture
+│   ├── config/              ← environment configuration
+│   ├── db/                  ← database connection & schema
+│   ├── repositories/        ← data access layer (SQL queries & transactions)
+│   ├── services/            ← business logic & CSV generation
+│   ├── controllers/         ← HTTP request handlers
+│   ├── middlewares/         ← auth, rate-limiting & error handling
+│   ├── routes/              ← API & admin routes
+│   ├── app.js               ← Express application setup
+│   └── server.js            ← HTTP listener & graceful shutdown
+├── tests/                   ← automated unit & integration tests
+├── public/                  ← what guests see (invitation, ticket generator)
+│   ├── css/
+│   │   └── style.css
+│   ├── js/
+│   │   └── app.js
 │   ├── index.html
-│   └── hero.jpg         ← (optional) your couple photo
+│   ├── ticket-bg.jpg
+│   └── hero.jpg             ← (optional) your couple photo
 ├── admin/
-│   └── admin.html       ← the private dashboard
-└── data/
-    └── wedding.db       ← created automatically on first start
+│   ├── css/
+│   │   └── admin.css
+│   ├── js/
+│   │   └── admin.js
+│   └── admin.html           ← the private dashboard
+├── data/
+│   └── wedding.db           ← created automatically on first start
+├── server.js                ← root entrypoint forwarder
+└── package.json
 ```
 
 Put all the files exactly like this in one folder.
@@ -50,7 +68,8 @@ In a terminal, inside the project folder:
 
 ```
 npm install
-npm start
+npm test      # runs automated unit and integration tests
+npm start     # starts production server (or `npm run dev` for auto-reload)
 ```
 
 Then open:

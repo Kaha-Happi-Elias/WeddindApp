@@ -7,67 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@400;500;700&family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,600;1,500&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<style>
-:root{--bg:#fbf9f5;--ink:#2b2622;--mute:#8a8178;--gold:#c8912b;--card:#f4efe6;--line:#e4dccd;--hero:#3a2418}
-*{box-sizing:border-box}
-[hidden]{display:none!important}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.6 'DM Sans',system-ui,sans-serif;display:flex;justify-content:center}
-main{width:100%;max-width:480px}
-/* HERO: put your photo at public/hero.jpg — if it is missing, the brown gradient shows instead */
-.hero{position:relative;height:88vh;min-height:520px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;color:#fff;
-background:url(hero.jpg) center 12%/cover no-repeat,radial-gradient(ellipse at 30% 35%,#7a4a2e 0,transparent 55%),radial-gradient(ellipse at 75% 55%,#5a3521 0,transparent 55%),linear-gradient(#2a180f,var(--hero))}
-.hero{padding-top:20vh}
-.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.10),rgba(0,0,0,.30) 55%,transparent 72%)}
-.hero h1,.hero .rule{position:relative;z-index:1}
-.hero::after{content:"";position:absolute;inset:auto 0 0;height:38%;background:linear-gradient(transparent,var(--bg))}
-.hero h1{font:italic 400 56px/1 'Playfair Display',serif;margin:0;animation:rise 1.4s ease both;text-shadow:0 2px 20px #0008}
-.hero .rule{width:120px;height:1px;background:#ffffff88;margin:18px 0 0}
-.hero .scroll{position:absolute;bottom:22px;z-index:1;color:var(--mute);font-size:10px;letter-spacing:.3em}
-.hero .scroll i{display:block;width:1px;height:28px;background:var(--mute);margin:6px auto 0}
-@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){.hero h1{animation:none}html{scroll-behavior:auto}}
-section{padding:36px 28px;text-align:center}
-.small{font-size:10px;letter-spacing:.25em;color:var(--mute);text-transform:uppercase}
-.names{font:italic 400 44px/1.15 'Playfair Display',serif;margin:10px 0;color:var(--gold);}
-.amp{color:var(--gold);font:italic 22px 'Playfair Display',serif}
-.serif{font-family:'Playfair Display',Georgia,serif}
-.lead{font:italic 400 15px/1.7 'Playfair Display',serif;color:var(--mute);margin:18px 0 0}
-.info{display:grid;grid-template-columns:1fr 1fr;gap:26px 10px;margin-top:30px}
-.info .full{grid-column:1/-1}
-.info b{display:block;font-weight:700;font-size:15px;margin:4px 0 2px}
-.ic{color:var(--gold);font-size:18px;display:block}
-.count{background:var(--gold);color:#fff;border-radius:30px 30px 60px 30px;padding:28px 16px 24px;margin:0 22px}
-.count p{font:italic 14px 'Playfair Display',serif;margin:0 0 14px}
-.count .row{display:flex;justify-content:center;gap:18px}
-.count .n{font:600 34px/1 'Playfair Display',serif;font-variant-numeric:tabular-nums}
-.count .l{font-size:8px;letter-spacing:.2em;text-transform:uppercase;opacity:.85}
-h2{font:italic 400 26px 'Playfair Display',serif;margin:0 0 18px}
-.box{border:1px solid var(--line);border-radius:22px;padding:26px 20px}
-input,textarea{width:100%;font:inherit;color:var(--ink);background:transparent;border:1px solid var(--gold);border-radius:12px;padding:12px 14px;outline:none}
-input:focus-visible,textarea:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
-.btns{display:flex;gap:10px;justify-content:center;margin-top:14px}
-button{font:700 10px 'DM Sans',sans-serif;letter-spacing:.14em;text-transform:uppercase;border-radius:999px;padding:12px 18px;cursor:pointer;border:1px solid var(--gold)}
-button:disabled{opacity:.6;cursor:wait}
-.pri{background:var(--gold);color:#fff}.sec{background:transparent;color:var(--gold)}
-.status{margin-top:14px;font:italic 15px 'Playfair Display',serif;color:var(--gold);min-height:22px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:14px}
-.chips span{border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:11px}.chips em{color:var(--mute);font-style:normal;font-size:9px}
-.msgs{margin-top:22px;text-align:left;display:grid;gap:10px}
-.msg{background:var(--card);border-radius:14px;padding:12px 14px}
-.msg q{font:italic 14px 'Playfair Display',serif;quotes:"“" "”";overflow-wrap:anywhere}
-.msg div{display:flex;justify-content:space-between;margin-top:6px;font-size:9px;letter-spacing:.14em;color:var(--gold);text-transform:uppercase}
-.msg small{color:var(--mute);letter-spacing:0;text-transform:none}
-.pass{background:var(--card);border-radius:26px;padding:26px 20px;box-shadow:0 10px 30px #0000000f}
-#qr{display:inline-block;background:#fff;padding:14px;border-radius:14px;margin:14px 0 8px}
-#qr img,#qr canvas{display:block}
-a.pri{display:inline-block;text-decoration:none;font:700 10px 'DM Sans';letter-spacing:.14em;text-transform:uppercase;border-radius:999px;padding:12px 20px}
-.map{display:block;width:100%;height:220px;border:0;border-radius:16px;margin:8px 0 14px}
-footer{padding:20px 28px 60px;text-align:center}
-footer .serif{font-style:italic;font-size:20px;line-height:1.4}
-.toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,30px);opacity:0;background:var(--card);border:1px solid var(--line);color:var(--ink);padding:11px 18px;border-radius:12px;font-size:13px;transition:.3s;pointer-events:none;box-shadow:0 6px 24px #0002;z-index:9}
-.toast.on{opacity:1;transform:translate(-50%,0)}
-</style>
+<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <main>
@@ -86,7 +26,7 @@ footer .serif{font-style:italic;font-size:20px;line-height:1.4}
   <div class="serif" style="font-size:46px;color:var(--gold);margin:26px 0 0;letter-spacing:.02em">07.11.2026</div>
   <div class="small" style="margin-top:2px">Samedi 7 novembre · Douala</div>
   <div class="info">
-    <div><span class="ic">▦</span><span class="small">Mairie</span><b>10h30</b>Foyer du Marin</div>
+    <div><span class="ic">▦</span><span class="small">Mairie</span><b>09h30</b>Foyer du Marin</div>
     <div><span class="ic">♪</span><span class="small">Réception</span><b>18h00</b>Complexe Émirates, salle VIP</div>
     <div><span class="ic">♢</span><span class="small">Dress code</span><b>Chic &amp; Élégant</b></div>
     <div><span class="ic">♡</span><span class="small">Cadeaux</span><b>Pas de cadeaux matériels</b></div>
@@ -133,7 +73,7 @@ footer .serif{font-style:italic;font-size:20px;line-height:1.4}
 <section>
   <h2>Où nous retrouver</h2>
 
-  <div class="small">Mairie · 10h30</div>
+  <div class="small">Mairie · 09h30</div>
   <p class="serif" style="font-size:18px;margin:6px 0 2px">Foyer du Marin</p>
   <p style="font-size:13px;margin:0 0 6px">10 Rue Gallieni, Douala</p>
   <iframe class="map" loading="lazy" title="Carte du Foyer du Marin" src="https://www.google.com/maps?q=Foyer+du+Marin,+10+Rue+Gallieni,+Douala&output=embed"></iframe>
@@ -150,178 +90,6 @@ footer .serif{font-style:italic;font-size:20px;line-height:1.4}
 </main>
 <div class="toast" id="toast"></div>
 
-<script>
-/* ====== EDIT THIS ====== */
-const WEDDING_DATE = '2026-11-07T10:30:00+01:00';   // countdown target: town hall, 10h30 Douala time
-const TICKET = { bg: 'ticket-bg.jpg' };   // the invitation image used as the ticket (public/ticket-bg.jpg)
-/* ======================= */
-
-const $ = id => document.getElementById(id);
-const target = new Date(WEDDING_DATE);
-function tick(){
-  const t = Math.max(0, target - Date.now()) / 1000 | 0, p = n => String(n).padStart(2, '0');
-  $('d').textContent = p(t / 86400 | 0); $('h').textContent = p(t % 86400 / 3600 | 0);
-  $('m').textContent = p(t % 3600 / 60 | 0); $('s').textContent = p(t % 60);
-}
-tick(); setInterval(tick, 1000);
-
-let tt; function toast(x){ const e = $('toast'); e.textContent = x; e.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => e.classList.remove('on'), 2800); }
-const store = {
-  get(k, d){ try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch(e){ return d; } },
-  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
-};
-async function api(url, method, body){
-  const r = await fetch(url, { method, headers: { 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
-  const data = await r.json().catch(() => ({}));
-  if (!r.ok) throw new Error(data.error || 'Erreur, veuillez réessayer.');
-  return data;
-}
-
-/* ----- RSVP ----- */
-/* Personal link: https://your-site/?g=SECRET  (created in the /admin dashboard) */
-let TOKEN = new URLSearchParams(location.search).get('g');
-let guest = TOKEN ? { name: '', status: '' } : store.get('guest', { name: '', status: '' });
-$('name').value = guest.name;
-async function loadGuest(){
-  if (!TOKEN) return;
-  try {
-    const g = await api('/api/guest/' + encodeURIComponent(TOKEN));
-    guest = { name: g.name, status: g.status === 'accepted' || g.status === 'declined' ? g.status : '' };
-    $('name').value = g.name; $('name').readOnly = true;
-    $('greet').textContent = 'Cher(e) ' + g.name;
-    showStatus();
-  } catch(e){ TOKEN = null; toast("Ce lien d'invitation n'est pas valide."); }
-}
-function showStatus(){
-  $('status').textContent = guest.status === 'accepted' ? 'Présence confirmée 🎉' : guest.status === 'declined' ? 'Nous regrettons votre absence.' : '';
-  $('pname').textContent = guest.name || 'Invité';
-  const ok = guest.status === 'accepted';       // ticket only for guests who confirmed
-  $('passSec').hidden = !ok;
-  if (ok) drawQR();
-}
-async function rsvp(status, btn){
-  const name = $('name').value.trim();
-  if (!name){ toast('Indiquez votre nom complet'); $('name').focus(); return; }
-  btn.disabled = true;
-  try {
-    await api('/api/rsvp', 'POST', { name, status, token: TOKEN });
-    guest = { name: TOKEN ? guest.name : name, status }; if (!TOKEN) store.set('guest', guest); showStatus();
-    toast(status === 'accepted' ? 'Merci ! Votre billet est prêt 🎉' : 'Réponse enregistrée');
-    if (status === 'accepted') setTimeout(() => $('passSec').scrollIntoView({ behavior: 'smooth', block: 'center' }), 700);
-  } catch(e){ toast(e.message); }
-  btn.disabled = false;
-}
-$('yes').onclick = e => rsvp('accepted', e.currentTarget);
-$('no').onclick  = e => rsvp('declined', e.currentTarget);
-
-/* ----- QR guest pass ----- */
-function drawQR(){
-  const q = $('qr'); q.innerHTML = '';
-  if (window.QRCode) new QRCode(q, { text: TOKEN ? 'EC-' + TOKEN : 'invitation:irene-benjamin:' + (guest.name || 'invite'), width: 150, height: 150, colorDark: '#5a4526', colorLight: '#ffffff' });
-}
-
-/* ----- Guestbook ----- */
-function fmt(iso){ return new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' }); }
-async function loadMessages(){
-  try {
-    const list = await api('/api/messages');
-    $('count').textContent = list.length + (list.length > 1 ? ' messages' : ' message');
-    $('msgs').innerHTML = '';
-    list.forEach(m => {
-      const e = document.createElement('div'); e.className = 'msg';
-      const qn = document.createElement('q'); qn.textContent = m.text;
-      const r = document.createElement('div'), a = document.createElement('span'), s = document.createElement('small');
-      a.textContent = m.author; s.textContent = fmt(m.created_at); r.append(a, s); e.append(qn, r); $('msgs').append(e);
-    });
-  } catch(e){ $('count').textContent = ''; }
-}
-$('send').onclick = async e => {
-  const btn = e.currentTarget, text = $('msg').value.trim();
-  if (!text){ toast('Écrivez un message'); return; }
-  btn.disabled = true;
-  try {
-    await api('/api/messages', 'POST', { author: $('name').value.trim() || guest.name || 'Invité', text, token: TOKEN });
-    $('msg').value = ''; toast("Message envoyé au livre d'or ✨"); loadMessages();
-  } catch(err){ toast(err.message); }
-  btn.disabled = false;
-};
-
-/* ----- PDF ticket: your invitation image + the guest's name + thank-you + QR code ----- */
-function fitText(ctx, text, pre, family, size, maxW){
-  let sz = size;
-  for (; sz > 20; sz -= 2){ ctx.font = pre + sz + 'px ' + family; if (ctx.measureText(text).width <= maxW) break; }
-  return sz;
-}
-function say(ctx, text, x, y, pre, family, size, maxW, color){
-  const sz = fitText(ctx, text, pre, family, size, maxW);
-  ctx.font = pre + sz + 'px ' + family; ctx.fillStyle = color; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
-  ctx.fillText(text, x, y);
-}
-function makeQR(text){
-  const d = document.createElement('div'); d.style.cssText = 'position:fixed;left:-9999px;top:0';
-  document.body.append(d);
-  new QRCode(d, { text, width: 460, height: 460, colorDark: '#3d2f18', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
-  const el = d.querySelector('canvas') || d.querySelector('img');
-  return { el, done: () => d.remove() };
-}
-function loadImg(src){ return new Promise((ok, ko) => { const i = new Image(); i.onload = () => ok(i); i.onerror = ko; i.src = src; }); }
-
-async function drawTicket(){
-  await Promise.all([document.fonts.load('80px "Pinyon Script"'), document.fonts.load('600 40px "Cormorant Garamond"'), document.fonts.load('italic 30px "Cormorant Garamond"')]).catch(() => {});
-  const bg = await loadImg(TICKET.bg);
-  const W = bg.naturalWidth, H0 = bg.naturalHeight, F = 340, H = H0 + F;
-  const c = document.createElement('canvas'); c.width = W; c.height = H;
-  const ctx = c.getContext('2d');
-  const SCRIPT = '"Pinyon Script", "Brush Script MT", cursive', SERIF = '"Cormorant Garamond", Georgia, serif';
-  const INK = '#2e2a28', GOLD = '#a8741a', SOFT = '#6b5d4e';
-  const who = guest.name || 'cher invité';
-
-  ctx.drawImage(bg, 0, 0);                                    // the invitation, unchanged
-  say(ctx, 'Vous convient ' + who, W / 2 - 2, 534, '600 ', SERIF, 38, 520, INK);   // replaces the dotted line
-
-  // footer strip in the same marble white
-  let r = 0, g = 0, b = 0;
-  [.4, .5, .6].forEach(f => { const d = ctx.getImageData(Math.round(W * f), H0 - 4, 1, 1).data; r += d[0]; g += d[1]; b += d[2]; });
-  ctx.fillStyle = 'rgb(' + Math.round(r / 3) + ',' + Math.round(g / 3) + ',' + Math.round(b / 3) + ')';
-  ctx.fillRect(0, H0, W, F);
-  const line = ctx.createLinearGradient(60, 0, W - 60, 0);
-  line.addColorStop(0, 'rgba(184,137,44,0)'); line.addColorStop(.5, 'rgba(184,137,44,.9)'); line.addColorStop(1, 'rgba(184,137,44,0)');
-  ctx.fillStyle = line; ctx.fillRect(60, H0 + 8, W - 120, 2);
-  ctx.fillStyle = GOLD; ctx.beginPath(); ctx.moveTo(W / 2, H0 - 2); ctx.lineTo(W / 2 + 12, H0 + 9); ctx.lineTo(W / 2, H0 + 20); ctx.lineTo(W / 2 - 12, H0 + 9); ctx.closePath(); ctx.fill();
-
-  const cx = (W - 320) / 2 + 20;
-  say(ctx, 'Merci ' + who, cx, H0 + 140, '', SCRIPT, 72, 600, GOLD);
-  say(ctx, "d'avoir confirmé votre présence", cx, H0 + 205, 'italic 500 ', SERIF, 42, 600, INK);
-  say(ctx, "Présentez ce billet à l'entrée", cx, H0 + 265, 'italic 500 ', SERIF, 30, 600, SOFT);
-
-  // QR code card
-  const qr = makeQR(TOKEN ? 'EC-' + TOKEN : 'invitation:irene-benjamin:' + (guest.name || 'invite'));
-  if (qr.el.decode) { try { await qr.el.decode(); } catch(e){} }
-  const qx = W - 320, qy = H0 + 42, qs = 260;
-  ctx.fillStyle = '#ffffff'; ctx.strokeStyle = 'rgba(184,137,44,.8)'; ctx.lineWidth = 2;
-  ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(qx, qy, qs, qs, 14); else ctx.rect(qx, qy, qs, qs); ctx.fill(); ctx.stroke();
-  ctx.drawImage(qr.el, qx + 20, qy + 20, qs - 40, qs - 40); qr.done();
-  say(ctx, 'BILLET PERSONNEL', qx + qs / 2, qy + qs + 34, '600 ', SERIF, 24, qs, GOLD);
-  return c;
-}
-$('dl').onclick = async e => {
-  const btn = e.currentTarget, label = btn.textContent;
-  if (guest.status !== 'accepted') return;
-  if (!window.jspdf) { toast('Le module PDF ne s\'est pas chargé. Vérifiez votre connexion.'); return; }
-  btn.disabled = true; btn.textContent = 'Création du billet…';
-  try {
-    const canvas = await drawTicket();
-    const PW = 120, PH = PW * canvas.height / canvas.width;
-    const pdf = new window.jspdf.jsPDF({ orientation: 'portrait', unit: 'mm', format: [PW, PH] });
-    pdf.addImage(canvas.toDataURL('image/jpeg', .92), 'JPEG', 0, 0, PW, PH);
-    const file = ('billet-' + (guest.name || 'invite')).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/gi, '-').toLowerCase() + '.pdf';
-    pdf.save(file);
-    toast('Billet téléchargé ✨');
-  } catch(err){ toast('Impossible de créer le billet, réessayez.'); }
-  btn.disabled = false; btn.textContent = label;
-};
-
-showStatus(); loadMessages(); loadGuest();
-</script>
+<script src="/js/app.js"></script>
 </body>
 </html>
